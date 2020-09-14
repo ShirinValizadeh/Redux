@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import {Provider} from "react-redux" // has access to main store
-import {createStore} from "redux"    // function to creatStore (we make it in reducers)
+import {Provider} from "react-redux" // has access to main store1
+import {createStore} from "redux"    // function to creatStore (we make it in reducers)2
 
 
 
@@ -28,7 +28,7 @@ class App extends React.Component {
 
 //any component inside provider gonna have access to mainStore
 //!provider needs store which gonna be build using redux creatingStore
-// creatStore need reducer to organise data inside store
+// creatStore need reducer to organise data inside store 3
 ReactDOM.render(
   <Provider store={createStore(reducers)}>
   <App/>
