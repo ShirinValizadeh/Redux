@@ -8,7 +8,7 @@ import {createStore} from "redux"    // function to creatStore (we make it in re
 import SongsList from "./components/SongsList"
 import SongDetail from "./components/SongDetail"
 import reducers from "./reducers"
-
+import AddSong from "./components/AddSong"
 
 
 class App extends React.Component {
@@ -16,6 +16,8 @@ class App extends React.Component {
     return (
       <div className="container">
         <div className="row">
+        <AddSong />
+
           <SongsList/>
           <SongDetail/>
         </div>

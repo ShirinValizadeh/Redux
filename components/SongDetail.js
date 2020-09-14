@@ -15,7 +15,7 @@ class SongDetail extends React.Component {
       )
     } else {
         return(
-            < h5 > No Song is selected </h5>
+            < h5 > </h5>
         ) 
         }
   }

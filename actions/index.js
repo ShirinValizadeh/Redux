@@ -10,4 +10,10 @@ export const selectSong = (song)=>{
 }
 
 
-
+//action for addsong.js
+export const addSong=  (song) =>{
+    return{
+        type: 'ADD_SONG',
+        payload: song
+    }
+}
