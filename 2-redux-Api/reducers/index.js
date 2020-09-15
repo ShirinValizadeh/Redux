@@ -22,8 +22,19 @@ const selectedImgReducer = (img = null , action) =>{
 }
 
 
+const goNextReducer = (next = false , action)=>{
+    if (action.type === 'NEXT') {
+        return action.payload
+    }
+    return next
+}
+
+
+
+
 //we get them as a obj
 export default combineReducers({
     images : imgsReducer,
-    selectedImage : selectedImgReducer
+    selectedImage : selectedImgReducer,
+    next : goNextReducer
 })

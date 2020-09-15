@@ -2,11 +2,12 @@ import React from 'react';
 import {connect} from "react-redux"
 
 import getData from "../services/pixabay"
-import {setImgs} from "../actions"
+import {setImgs , nextPage} from "../actions"
 
 class SearchBar extends React.Component {
   state = {
-    searchWord : ''
+    searchWord : '',
+    page:1
   }
 
   onSearchInpChange = (e)=>{
@@ -15,17 +16,32 @@ class SearchBar extends React.Component {
     }) 
   }
 
+
   //wenn click on btn >will get data
   onSearchBtnClick = ()=>{
     getData(this.state.searchWord , 10 , 1).then(data =>{
-        console.log(data);
+       // console.log(data);
+        //take setImgs func from actions
         this.props.setImgs(data.hits)
     }).catch(err=>{
         console.log(err);
     })
   }
 
+componentDidUpdate(){
+    if (this.props.next) {
+        getData(this.state.searchWord , 10 , this.state.page +1).then(data =>{
+            this.setState({
+                page:this.state.page +1
+            })
+            this.props.nextPage(false)
+             this.props.setImgs([...this.props.images , ...data.hits])
 
+         }).catch(err=>{
+             console.log(err);
+         })
+    }
+}
 
   render() {
       const {searchWord} =  this.state
@@ -51,12 +67,14 @@ class SearchBar extends React.Component {
   }
 }
 
+
+// convert state to props
 const mapStateToProps = (state) =>{
-    console.log(state);
-    return {images: state.images}
+   // console.log( 'state : ' , state);
+    return {images: state.images , next:state.next}
 }
 
 
 
 
-export default connect(mapStateToProps , {setImgs})(SearchBar) 
+export default connect(mapStateToProps , {setImgs , nextPage})(SearchBar) 

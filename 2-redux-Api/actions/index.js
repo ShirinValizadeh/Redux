@@ -16,3 +16,12 @@ export const selectSinglImg = (img) =>{
         payload : img
     }
 }
+
+
+
+export const nextPage = (next) =>{
+    return {
+        type: 'NEXT',
+        payload: next
+    }
+}
