@@ -9,8 +9,12 @@ const songsArry = [
 ]
 
 //MAIN DATA 4
-const songReducer = ()=>{
-    return songsArry
+const songReducer = (songs = songsArry , action)=>{
+       if (action.type === 'ADD_SONG') {
+        songsArry.push(action.payload)
+        return [...songsArry]
+    }
+    return songs
 }
 
 
@@ -21,10 +25,7 @@ const selectedSongReducer = (selectedSong = null , action) =>{
         //if action contains " payload" that means we are changing the main state
         return action.payload
     }
-    if (action.type === 'ADD_SONG') {
-        songsArry.push(action.payload)
-        return action.payload
-    }
+ 
 
     return selectedSong
 }
